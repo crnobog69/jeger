@@ -2,6 +2,7 @@ require('dotenv').config();
 const { Client, GatewayIntentBits, REST, Routes, SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const axios = require('axios');
 const config = require('../config.json');
+const keepAlive = require('./keepAlive.js');
 
 const client = new Client({
     intents: [
@@ -109,5 +110,8 @@ client.on('interactionCreate', async interaction => {
         }
     }
 });
+
+// Start the keep-alive server
+keepAlive();
 
 client.login(process.env.TOKEN);
